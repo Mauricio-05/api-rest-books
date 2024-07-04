@@ -1,0 +1,42 @@
+name: Run tests and build maven, build and push docker image on pull request to main
+on:
+  pull_request:
+    branches:
+      - main
+jobs:
+  build-and-push-image-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code ✅
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17 💻
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with maven and run tests 👷‍♂️
+        run: mvn clean install
+
+      - name: Set env for tag image docker unix date
+        run: echo "DATE=$(date +%s)" >> $GITHUB_ENV
+
+      - name: Login to Docker Hub 🔐
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+      - name: Build and push docker image 🚀
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+           ${{ secrets.DOCKERHUB_USERNAME }}/api-rest-books:${{ env.DATE }}
+           ${{ secrets.DOCKERHUB_USERNAME }}/api-rest-books:latest
+          build-args: |
+            SPRING_PROFILES_ACTIVE=prod
+          file: Dockerfile-prod
+

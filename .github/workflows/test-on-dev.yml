@@ -1,0 +1,20 @@
+name: Run unit tests on push branch dev
+on:
+  push:
+    branches:
+      - dev
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code ✅
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17 💻
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Build with maven and run tests 👷‍♂️
+        run: mvn clean install

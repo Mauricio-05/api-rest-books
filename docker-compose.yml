@@ -1,0 +1,32 @@
+version: '3.1'
+name: app-books
+
+services:
+  books_db_dev:
+    image: postgres
+    container_name: books_db_dev
+    restart: always
+    ports:
+      - "5441:5432"
+    environment:
+      POSTGRES_USER: user_books_dev
+      POSTGRES_PASSWORD: books-dev.1*24
+      POSTGRES_DB: books
+  api_rest_books:
+    image: nombre_image
+    container_name: api_rest_books
+    build:
+      context: .
+    ports:
+      - "4005:8080"
+    restart: always
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DB_HOST: books_db_dev
+      DB_PORT: 5432
+      DB_NAME: books
+      DB_USERNAME: user_books_dev
+      DB_PASSWORD: books-dev.1*24
+    depends_on:
+      - books_db_dev
+
