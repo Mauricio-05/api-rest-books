@@ -1,60 +1,61 @@
-# API Rest books 📚
+# API Rest books. 📚
 Esta es una API RESTful construida con Spring Boot que permite gestionar libros y autores.
 Proporciona endpoints para crear, leer, actualizar y eliminar tanto libros como autores. 
 También permite asociar libros con autores.
 
-## Requisitos ✏️
+## Requisitos. ✏️
 
-- Java 17
+- Tener Java 17 instalado o una version mayor.
+- Tener Docker instalado.
 
-## Tecnologías utilizadas 💻
+## Tecnologías utilizadas. 💻
 
-- Java 17
-- Spring boot
-- Spring Data JPA
-- Hibernate
-- H2 (Pruebas)
-- Maven
-- Github Actions
-- Postgres
-- Docker
+- Java 17.
+- Spring boot.
+- Spring Data JPA.
+- Hibernate.
+- H2 (Pruebas).
+- Maven.
+- Github Actions.
+- Postgres.
+- Docker.
 
-## Clonar repositorio ⬇️
+## Clonar repositorio. ⬇️
  ```bash
-  git clone https://github.com/tu-usuario/tu-repositorio.git
+  git clone https://github.com/Mauricio-05/api-rest-books.git
  ```
 
-## Configuración del proyecto 🔩
+## Configuración del proyecto. 🔩
 
 > [!NOTE]
 > En Windows, si no tienes Maven instalado globalmente, asegúrate de utilizar `.\mvnw` en lugar de `mvn` 
 para todos los comandos de Maven en este proyecto. En Linux y macOS puedes usar `./mvnw` .
 
-1. Navegar al directorio del proyecto
+1. Navegar al directorio del proyecto.
       ```bash
       cd your_path/book
       ```
-2. Instalar las dependencias de Maven
+2. Instalar las dependencias de Maven.
       ```bash
       mvn clean install
       ```
-3. Crear la base de datos con docker-compose
+3. Crear la base de datos con docker compose.
    ```bash
-   docker-compose up books_db_dev
+   docker compose up books_db_dev
       ```
-4. Ejecutar la aplicación
+4. Ejecutar la aplicación.
    ```bash
    mvn spring-boot:run
       ```
 
 ## Endpoints 🌐
 
-- `http://localhost:8080` - URL base luego de la API
-  - `/api/authors` - CRUD para autores
-  - `/api/books` - CRUD para libros
+- `http://localhost:8080` - URL base luego de la API.
+  - `/api/authors` - CRUD para autores.
+  - `/api/books` - CRUD para libros.
 
 > [!NOTE]
-> Cada ruta admite los siguientes métodos HTTP
+> Cada ruta admite los siguientes métodos HTTP.
 
 - **POST**: Crea un nuevo recurso.
 
